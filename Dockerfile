@@ -24,7 +24,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 	# rust
 	&& export RUSTUP_DIST_SERVER="https://rsproxy.cn" && export RUSTUP_UPDATE_ROOT="https://rsproxy.cn/rustup" \
 	&& curl --proto '=https' --tlsv1.2 -sSf https://rsproxy.cn/rustup-init.sh | sh -s -- -q -y \
-	&& echo '[source.crates-io]\nreplace-with = 'rsproxy'\n[source.rsproxy]\nregistry = "https://rsproxy.cn/crates.io-index"\n[registries.rsproxy]\nindex = "https://rsproxy.cn/crates.io-index"\n[net]\ngit-fetch-with-cli = true' > ~/.cargo/config \
+	&& echo '[source.crates-io]\nreplace-with = \'rsproxy\'\n[source.rsproxy]\nregistry = "https://rsproxy.cn/crates.io-index"\n[registries.rsproxy]\nindex = "https://rsproxy.cn/crates.io-index"\n[net]\ngit-fetch-with-cli = true' > ~/.cargo/config \
 	&& curl -L https://github.com/rust-analyzer/rust-analyzer/releases/latest/download/rust-analyzer-x86_64-unknown-linux-gnu.gz | gunzip -c - > /usr/bin/rust-analyzer && chmod +x /usr/bin/rust-analyzer \
 	# neovim 
 	&& curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && chmod u+x nvim.appimage \
