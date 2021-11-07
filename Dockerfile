@@ -32,7 +32,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 	&& curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage && chmod u+x nvim.appimage \
 	&& ./nvim.appimage --appimage-extract \
 	&& ./squashfs-root/AppRun --version \
-	&& ln -s /squashfs-root/AppRun /usr/bin/nvim \
+	&& mv squashfs-root / && ln -s /squashfs-root/AppRun /usr/bin/nvim \
 	&& nvim -es -u install.vim -i NONE -c "PlugInstall" -c "qa" \
 	# clear useless things
 	&& rm ./nvim.appimage ./install.vim
