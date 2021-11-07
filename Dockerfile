@@ -3,6 +3,7 @@ FROM ubuntu:latest
 # For tzdata
 ENV DEBIAN_FRONTEND="noninteractive" TZ="Asia/Shanghai"
 
+WORKDIR /root
 COPY cargo-config /root/.cargo/config
 COPY init.vim /root/.config/nvim/init.vim
 COPY install.vim .
@@ -10,8 +11,9 @@ COPY install.vim .
 RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 	&& apt-get update \
 	&& apt-get upgrade \
-	# dev tools
-	zsh git curl net-tools -y \
+	&& apt-get install \
+	# dev tools 
+	zsh git curl net-tools \
 	# language tools
 	llvm ccls clang golang -y \
 	# oh my zsh
@@ -31,5 +33,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list \
 	&& ./nvim.appimage --appimage-extract \
 	&& ./squashfs-root/AppRun --version \
 	&& ln -s /squashfs-root/AppRun /usr/bin/nvim \
-	&& nvim -es -u install.vim -i NONE -c "PlugInstall" -c "qa"
+	&& nvim -es -u install.vim -i NONE -c "PlugInstall" -c "qa" \
+	# clear useless things
+	&& rm ./nvim.appimage ./install.vim
 
