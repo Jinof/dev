@@ -2,6 +2,13 @@
 
 > This is a repo for dev docker which contains pre installed dev enviroment
 
+## Now supportted dev environments
+
+- [x] oh my zsh (with zsh-autosuggestions zsh-syntax-highlighting)
+- [x] neovim (support lsp with nvim-lspconfig using gopls, rust-analyzer, ccls))
+- [x] golang
+- [x] rust
+
 ## Usage
 
 ```bash
